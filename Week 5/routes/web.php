@@ -37,7 +37,7 @@ use App\Http\Controllers\SalesController;
 Route::get('/sales', [SalesController::class, 'index']);
 
 Route::get('/level', [LevelController::class, 'index']);
-Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/tambah', [UserController::class,'tambah']);
 Route::post('/user/tambah_simpan', [UserController::class,'tambah_simpan']);
@@ -48,3 +48,8 @@ Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::post('/kategori', [KategoriController::class, 'store']);
 Route::get('/kategori/create', [KategoriController::class, 'create']);
+
+Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+
+Route::get('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
