@@ -18,7 +18,9 @@ use App\Http\Controllers\KategoriController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']); // Halaman Home
+Route::get('/', function () {
+    return view('welcome');
+});
 
 use App\Http\Controllers\ProductController;
 // Route dengan Prefix untuk Products
