@@ -25,7 +25,7 @@ class KategoriController extends Controller
 
         return view('kategori.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
-    public function list(Request $request)
+    public function getKategori(Request $request)
     {
         $kategoris = KategoriModel::select('kategori_id', 'kategori_kode', 'kategori_nama');
 

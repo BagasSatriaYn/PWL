@@ -27,7 +27,7 @@ class LevelController extends Controller
     }
 
     // Menampilkan daftar level dalam format DataTables
-    public function list(Request $request)
+    public function getLevels(Request $request)
     {
         $levels = LevelModel::select('level_id', 'level_kode', 'level_name');
         
