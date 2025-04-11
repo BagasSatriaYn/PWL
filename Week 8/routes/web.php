@@ -52,6 +52,7 @@
     Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
     Route::get('/import', [UserController::class, 'import']);
     Route::post('/import_ajax', [UserController::class, 'import_ajax']);
+    Route::get('/export_excel', [UserController::class, 'export_excel']); // export excel
 });
 
  Route::middleware(['authorize:ADM,MNG,STF'])->prefix('level')->group(function () {
@@ -71,6 +72,7 @@
     Route::delete('/{id}', [LevelController::class, 'destroy'])->name('level.destroy'); // Hapus level
     Route::get('/import', [LevelController::class, 'import']);
     Route::post('/import_ajax', [LevelController::class, 'import_ajax']);
+    Route::get('/export_excel', [LevelController::class, 'export_excel']); // export excel
 
 });
 
@@ -91,6 +93,7 @@
     Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax'])->name('kategori.delete_ajax'); // Hapus kategori (AJAX)
     Route::get('/import', [KategoriController::class, 'import']);
     Route::post('/import_ajax', [KategoriController::class, 'import_ajax']);
+    Route::get('/export_excel', [KategoriController::class, 'export_excel']); // export excel
    
 
 });
@@ -112,6 +115,8 @@
     Route::delete('/{id}/delete_ajax', [SupplierController::class, 'delete_ajax'])->name('supplier.delete_ajax'); // Hapus supplier (AJAX)
     Route::get('/import',[SupplierController::class,'import']); // ajax form upload excel
     Route::post('/import_ajax',[SupplierController::class,'import_ajax']); // ajax form import excel    
+    Route::get('/export_excel', [SupplierController::class, 'export_excel']); // export excel
+    
 });
 
  Route::middleware(['authorize:ADM,MNG,STF'])->prefix('barang')->group(function () {
