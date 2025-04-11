@@ -6,6 +6,7 @@ use App\Models\LevelModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class LevelController extends Controller
 {
@@ -22,9 +23,12 @@ class LevelController extends Controller
         ];
         
         $activeMenu = 'level';
-        
-        return view('level.index', compact('breadcrumb', 'page', 'activeMenu'));
+        $level = LevelModel::all(); // Ambil semua level dari DB
+    
+        // Kirim $level ke view juga
+        return view('level.index', compact('breadcrumb', 'page', 'activeMenu', 'level'));
     }
+    
 
     // Menampilkan daftar level dalam format DataTables
     public function getLevels(Request $request)
@@ -183,5 +187,66 @@ class LevelController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/level')->with('error', 'Data level gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
+    }
+    public function import()
+    {
+        return view('level.import');
+    }
+
+    // 🆕 Proses import Excel via Ajax
+    public function import_ajax(Request $request)
+    {
+        if ($request->ajax() || $request->wantsJson()) {
+            $rules = [
+                'file_level' => ['required', 'mimes:xlsx', 'max:1024']
+            ];
+    
+            $validator = Validator::make($request->all(), $rules);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validasi Gagal',
+                    'msgField' => $validator->errors()
+                ]);
+            }
+    
+            $file = $request->file('file_level');
+    
+            $reader = IOFactory::createReader('Xlsx');
+            $reader->setReadDataOnly(true);
+            $spreadsheet = $reader->load($file->getRealPath());
+            $sheet = $spreadsheet->getActiveSheet();
+            $data = $sheet->toArray(null, false, true, true);
+    
+            $insert = [];
+            if (count($data) > 1) {
+                foreach ($data as $index => $row) {
+                    if ($index > 1) { // Lewati header (baris pertama)
+                        $insert[] = [
+                            'level_kode' => $row['A'],
+                            'level_name' => $row['B'],
+                            'created_at' => now(),
+                        ];
+                    }
+                }
+    
+                if (!empty($insert)) {
+                    LevelModel::insertOrIgnore($insert);
+                }
+    
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Data level berhasil diimport'
+                ]);
+            }
+    
+            return response()->json([
+                'status' => false,
+                'message' => 'Tidak ada data yang diimport'
+            ]);
+        }
+    
+        return redirect('/');
     }
 }
