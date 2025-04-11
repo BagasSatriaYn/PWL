@@ -116,7 +116,7 @@
     Route::get('/import',[SupplierController::class,'import']); // ajax form upload excel
     Route::post('/import_ajax',[SupplierController::class,'import_ajax']); // ajax form import excel    
     Route::get('/export_excel', [SupplierController::class, 'export_excel']); // export excel
-    
+
 });
 
  Route::middleware(['authorize:ADM,MNG,STF'])->prefix('barang')->group(function () {
@@ -137,6 +137,7 @@
     Route::get('/import', [BarangController::class, 'import']);
     Route::post('/import_ajax', [BarangController::class, 'import_ajax']);
     Route::get('/export_excel', [BarangController::class, 'export_excel']); // export excel
+    Route::get('/export_pdf', [BarangController::class, 'export_pdf']); // export pd
 
 
     
