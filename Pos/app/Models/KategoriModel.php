@@ -1,19 +1,19 @@
 <?php
- namespace App\Models;
 
- use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\Relations\HasMany;
+namespace App\Models;
 
- class KategoriModel extends Model 
- {
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class KategoriModel extends Model
+{
+    use HasFactory;
     protected $table = 'm_kategori';
     protected $primaryKey = 'kategori_id';
-    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['kategori_kode', 'kategori_nama'];
-
-    public function barang(): HasMany
-    {
-        return $this->hasMany(BarangModel::class, 'barang_id', 'barang_id');
-    }
-    
- }
+}
