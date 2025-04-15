@@ -32,20 +32,21 @@
                 </div>
                 <table class="table table-sm table-bordered table-striped">
                     <tr>
+                        <th class="text-right col-3">Kode Barang :</th>
+                        <td class="col-9">{{ $barang->barang_kode }}</td>
+                    </tr>
+                    <tr>
                         <th class="text-right col-3">Nama Barang :</th>
-                        <td class="col-9">{{ $barang->barang_name }}</td>
+                        <td class="col-9">{{ $barang->barang_nama }}</td>
                     </tr>
                     <tr>
-                        <th class="text-right col-3">Deskripsi :</th>
-                        <td class="col-9">{{ $barang->description }}</td>
+                    <th class="text-right col-3">Harga Beli :</th>
+                        <td>{{ number_format($barang->harga_beli, 0, ',', '.') }}</td>
                     </tr>
                     <tr>
-                        <th class="text-right col-3">Harga :</th>
-                        <td class="col-9">{{ number_format($barang->price, 0, ',', '.') }}</td>
+                    <th class="text-right col-3">Harga Jual :</th>
+                        <td>{{ number_format($barang->harga_jual, 0, ',', '.') }}</td>
                     </tr>
-                    <tr>
-                        <th class="text-right col-3">Stok :</th>
-                        <td class="col-9">{{ $barang->stock }}</td>
                     </tr>
                 </table>
             </div>

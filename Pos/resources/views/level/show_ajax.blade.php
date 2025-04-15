@@ -32,12 +32,12 @@
                 </div>
                 <table class="table table-sm table-bordered table-striped">
                     <tr>
-                        <th class="text-right col-3">Nama Level :</th>
-                        <td class="col-9">{{ $level->level_name }}</td>
+                        <th class="text-right col-3">Kode Level :</th>
+                        <td class="col-9">{{ $level->level_kode }}</td>
                     </tr>
                     <tr>
-                        <th class="text-right col-3">Deskripsi :</th>
-                        <td class="col-9">{{ $level->description }}</td>
+                        <th class="text-right col-3">Nama Level :</th>
+                        <td class="col-9">{{ $level->level_name }}</td>
                     </tr>
                 </table>
             </div>

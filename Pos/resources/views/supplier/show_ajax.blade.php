@@ -32,16 +32,16 @@
                 </div>
                 <table class="table table-sm table-bordered table-striped">
                     <tr>
+                        <th class="text-right col-3">Kode Supplier :</th>
+                        <td class="col-9">{{ $supplier->supplier_kode }}</td>
+                    </tr>
+                    <tr>
                         <th class="text-right col-3">Nama Supplier :</th>
-                        <td class="col-9">{{ $supplier->supplier_name }}</td>
+                        <td class="col-9">{{ $supplier->supplier_nama }}</td>
                     </tr>
                     <tr>
-                        <th class="text-right col-3">Alamat :</th>
-                        <td class="col-9">{{ $supplier->address }}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-right col-3">Kontak :</th>
-                        <td class="col-9">{{ $supplier->contact }}</td>
+                        <th class="text-right col-3">Alamat Supplier:</th>
+                        <td class="col-9">{{ $supplier->supplier_alamat }}</td>
                     </tr>
                 </table>
             </div>
