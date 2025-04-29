@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
     
     public function getJWTCustomClaims(){ return [];
     }
-    use HasFactory;
- 
+    use HasFactory; 
+    
     protected $table = 'm_barang'; // Nama tabel di database
     protected $primaryKey = 'barang_id'; // Primary Key
     public $timestamps = true; // Menggunakan timestamps
